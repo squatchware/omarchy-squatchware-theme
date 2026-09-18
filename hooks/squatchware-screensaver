@@ -1,0 +1,20 @@
+#!/bin/bash
+# Omarchy theme-set hook: use the Squatchware screensaver art while a Squatchware theme is
+# active, and put back whatever was there before when switching to any other theme.
+# Omarchy passes the new theme's slug as $1.
+
+branding=~/.config/omarchy/branding/screensaver.txt
+saved=~/.config/omarchy/branding/screensaver.pre-squatchware.txt
+
+case "$1" in
+squatchware | squatchware-light)
+  art=~/.config/omarchy/themes/$1/screensaver.txt
+  [[ -f $art ]] || exit 0
+  [[ -f $saved ]] || cp "$branding" "$saved" 2>/dev/null
+  cp "$art" "$branding"
+  ;;
+*)
+  [[ -f $saved ]] && mv "$saved" "$branding"
+  ;;
+esac
+exit 0
