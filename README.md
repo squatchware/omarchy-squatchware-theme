@@ -23,6 +23,8 @@ boot screens and the screensaver.
 ## Install
 
 ```sh
+git clone https://github.com/squatchware/omarchy-squatchware-theme
+cd omarchy-squatchware-theme
 ./install.sh                                  # both themes + the screensaver hook
 omarchy theme set squatchware                 # or squatchware-light
 ```
@@ -43,9 +45,9 @@ is set, and your previous art is put back when you switch to anything else.
 
 ## Building
 
-`python3 build.py` regenerates `themes/` and `bootloader/`. Palettes live in `palettes.py`,
-scenes in `scene.py`; the squatch sprites and pixel font come from the Squatchware brand kit
-(`../squatchware.dev/brand`, override with `SQUATCHWARE_BRAND`). `python3 build.py --check` runs
-the contrast check on its own.
+Everything under `themes/` and `bootloader/` is built and committed, so installing needs nothing
+else. `python3 build.py` regenerates them: palettes live in `palettes.py` and scenes in `scene.py`,
+while the squatch sprites and pixel font come from the Squatchware brand kit, which isn't public
+(point `SQUATCHWARE_BRAND` at a copy). `python3 build.py --check` runs the contrast check on its own.
 
 Press Start 2P is by CodeMan38, SIL Open Font License.
