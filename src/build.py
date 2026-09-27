@@ -150,7 +150,12 @@ def build_theme(pal, out, readme=None):
 
     lg = logo(pal["mode"])
     lg.save(out / "unlock.png")
-    scene.upscale(walls[0][1], 4).convert("RGB").resize((1800, 1125), Image.NEAREST).crop((0, 56, 1800, 1068)).save(out / "preview.png")
+    shot = HERE / "previews" / f"{pal['slug']}.png"  # a real desktop in this theme, like Omarchy's own previews
+    if shot.exists():
+        shot_img = Image.open(shot)
+        shot_img.save(out / "preview.png", optimize=True)
+    else:
+        scene.upscale(walls[0][1], 4).convert("RGB").resize((1800, 1125), Image.NEAREST).crop((0, 56, 1800, 1068)).save(out / "preview.png")
     preview_unlock(scene.upscale(walls[0][1], 4), pal, lg).convert("RGB").save(out / "preview-unlock.png")
     return out
 
